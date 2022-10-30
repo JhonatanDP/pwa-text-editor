@@ -12,3 +12,14 @@ const initdb = async () =>
     },
   });
 
+  export const getDb = async (value) => {
+    console.log('Getting data from the jateDB');
+    // connecto the DB
+    const jateDb = await openDB('jate', 1);
+    const tx = jateDb.transaction('jate', 'readwrite');
+    const objStore = tx.objectStore('jate');
+    const req = objStore.getAll()
+    const res = await req;
+    console.log('data saved to the jateDB', res);
+};
+
